@@ -1,0 +1,94 @@
+#videoContainer
+{
+    position:absolute;
+    height:100%;
+    width:100%;
+    overflow: hidden;
+}
+
+#vidOverlayContainer {
+    position: relative;
+    top: 35%;
+}
+#vidScrollContainer {
+    position: relative;
+    bottom: -90%;
+    z-index: 999;
+}
+
+#myCaption {
+    width: 100%;
+    height: 100px;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    text-align: center;
+    color: white;
+    font-size: 72px;
+}
+
+.myButton1 {
+    border-radius: 20px;
+}
+
+#scroll1 {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    text-align: center;
+    color: white;
+    font-size: 72px;
+    z-index: 999999999;
+    cursor: pointer;
+    -webkit-transition: color 2s; /* Safari */
+    transition: color 2s, font-size 1s;
+}
+#scroll1:hover{
+    color: #727272;
+    font-size: 82px;
+}
+
+
+#videoContainer video
+{
+    min-width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+main {
+    height: 100%;
+    margin-top: 50px;
+    position: absolute;
+    top: 100%;
+    width: 99%;
+}
+.gallery-item-a, .gallery-item-b {
+    margin-bottom: 50px;
+}
+.gallery-item-a {
+
+}
+.gallery-item-b {
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    margin: 50px 0 50px 0;
+
+}
+
+.gallery-item-b img, h2 {
+    margin: 50px 0 50px 0;
+
+}
+
+.container-container {
+    background-color: #0a6ebd;
+}
+#chart h2, h6 {
+    color: #ffffff !important;
+}
