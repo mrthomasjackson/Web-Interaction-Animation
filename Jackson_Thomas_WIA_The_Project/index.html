@@ -23,6 +23,8 @@
     <!-- Google Chart API -->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="js/chart.js"></script>
+    <script src="kartograph/lib/raphael-min.js"></script>
+    <script src="kartograph/dist/kartograph.js"></script>
     <!-- end Google Chart API -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -129,8 +131,17 @@
             <div class="row">
 
                 <div id="chart_div" class="col-xs-12" style="width: 100%; height: 500px;"></div>
-                <div class="col-xs-offset-8 col-xs-4"><h6>2013 Census: <a href="http://www.tellingmachine.com/post/all-50-states-as-xml-json-csv-xls-files.aspx">http://www.tellingmachine.com/post/all-50-states-as-xml-json-csv-xls-files.aspx </a> </h6></div>
-
+                <div class="col-xs-12"><h6>2013 Census: <a href="http://www.tellingmachine.com/post/all-50-states-as-xml-json-csv-xls-files.aspx">http://www.tellingmachine.com/post/all-50-states-as-xml-json-csv-xls-files.aspx </a> </h6></div>
+            </div>
+        </section>
+    </div>
+    <div class="container-container">
+        <section class="container">
+            <div class="page-header">
+                <h2>My Map<small> Interactive Map using KARTOGRAPH.JS </small></h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" id="map"></div>
             </div>
         </section>
     </div>
@@ -176,6 +187,45 @@
 <script src="js/jquery.smooth-scroll.min.js"></script>
 <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <script src="js/bootstrap-image-gallery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        kartograph.map('#map',600,400).loadMap('images/united-states.svg', mapLoaded);
+
+        function mapLoaded(map) {
+            map.addLayer('layer0', {
+                styles: {
+                    stroke: '#bbb',
+                    fill: '#000000'
+                },
+                mouseenter: function(d, path) {
+                    path.attr('fill', Math.random() < 0.5 ? '#c04' : '#04c');
+                },
+                mouseleave: function(d, path) {
+                    path.animate({ fill: '#f6f4f2' }, 1000);
+                }
+            });
+
+            var points_of_interest = [
+                { name: 'Juneau, AK', lat: 58.3, lon: -134.416667 },
+                { name: 'Honolulu, HI', lat: 21.3, lon: -157.816667 },
+                { name: 'San Francisco, CA', lat: 37.783333, lon: -122.416667 }
+            ];
+
+            map.addSymbols({
+                type: kartograph.LabeledBubble,
+                data: points_of_interest,
+                location: function(d) { return [d.lon, d.lat] },
+                title: function(d) { return d.name; },
+                radius: 3,
+                center: false,
+                attrs: { fill: 'black' },
+                labelattrs: { 'font-size': 11 },
+                buffer: true
+            });
+        }
+    });
+
+</script>
 <script type="text/javascript">
     $('a').smoothScroll();
 </script>
