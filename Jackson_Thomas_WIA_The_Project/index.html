@@ -25,6 +25,7 @@
     <script type="text/javascript" src="js/chart.js"></script>
     <script src="kartograph/lib/raphael-min.js"></script>
     <script src="kartograph/dist/kartograph.js"></script>
+    <script src="js/modernizr.custom.11429.js"></script>
     <!-- end Google Chart API -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,7 +44,7 @@
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand page-scroll" href="#page-top">
-                <i class="fa fa-play-circle"></i>  <span class="light">Visit The </span>USA
+                <span class="light">Visit The </span>USA
             </a>
         </div>
 
@@ -55,13 +56,13 @@
                     <a href="#page-top"></a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#about">About</a>
+                    <a class="page-scroll" href="#gallery">Gallery</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#download">Download</a>
+                    <a class="page-scroll" href="#chart">Population</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
+                    <a class="page-scroll" href="#seeMap">Map</a>
                 </li>
             </ul>
         </div>
@@ -81,11 +82,11 @@
                 <i class="fa fa-angle-double-down animated" id="scroll1"></i>
             </a>
         </div>
-    <video id="vid" autoplay loop>
-        <source src="video/Globe_USA1_Videvo.mp4" type="video/mp4">
-        <source src="video/Globe_USA1_Videvo.ogv" type="video/ogg">
-        Your browser does not support the video tag.
-    </video>
+        <video id="vid" autoplay loop>
+            <source src="video/Globe_USA1_Videvo.mp4" type="video/mp4">
+            <source src="video/Globe_USA1_Videvo.ogv" type="video/ogg">
+            Your browser does not support the video tag.
+        </video>
     </div>
 </header>
 <main>
@@ -99,19 +100,21 @@
                 <h2>Santa Barbra, California</h2>
                 <p>East Beach is a wide strip of white sand with gorgeous views of the offshore Channel Islands. In the old Cabrillo Bathhouse, Santa Barbara Aquatics offers volleyball lessons, kids' summer camps, and other beach activities.</p>
                 <a class="btn btn-info" title="Santa Barbra Gallery" href="images/rendered/image1.jpg" data-gallery><i class="glyphicon glyphicon-picture"></i> View Gallery</a>
+                <a class="btn btn-default" title="Santa Barabra Map" href="#seeMap">View Map</a>
             </div>
-            </div>
+        </div>
 
         <div class="row gallery-item-b">
-                <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
-                    <h2>Kansas City, Kansas</h2>
-                    <p>The Kansas Space Center in Hutchinson is rapidly becoming the most comprehensive space museum in existence, whereas the Sternberg Museum of Natural History in Hays recreates the days of Kansas 88 million years ago.</p>
-                    <a class="btn btn-info" title="Santa Barbra Gallery" href="images/rendered/image2.jpg" data-gallery><i class="glyphicon glyphicon-picture"></i> View Gallery</a>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    <img class="img-thumbnail img-responsive" src="images/rendered/image2.jpg">
-                </div>
-</div>
+            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
+                <h2>Kansas City, Kansas</h2>
+                <p>The Kansas Space Center in Hutchinson is rapidly becoming the most comprehensive space museum in existence, whereas the Sternberg Museum of Natural History in Hays recreates the days of Kansas 88 million years ago.</p>
+                <a class="btn btn-info" title="Santa Barbra Gallery" href="images/rendered/image2.jpg" data-gallery><i class="glyphicon glyphicon-picture"></i> View Gallery</a>
+                <a class="btn btn-default" title="Santa Barabra Map" href="#seeMap">View Map</a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <img class="img-thumbnail img-responsive" src="images/rendered/image2.jpg">
+            </div>
+        </div>
         <div class="row gallery-item-a">
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <img class="img-thumbnail img-responsive" src="images/rendered/image3.jpg">
@@ -120,6 +123,7 @@
                 <h2>Honolulu, Hawaii</h2>
                 <p>Hawaii is perfect for all watersports activities, including scuba diving and snorkelling. Any time is the perfect time to visit the Hawaiian islands.</p>
                 <a class="btn btn-info" title="Santa Barbra Gallery" href="images/rendered/image3.jpg" data-gallery><i class="glyphicon glyphicon-picture"></i> View Gallery</a>
+                <a class="btn btn-default" title="Santa Barabra Map" href="#seeMap">View Map</a>
             </div>
         </div>
     </section>
@@ -135,16 +139,58 @@
             </div>
         </section>
     </div>
-    <div class="container-container">
-        <section class="container">
+    <div>
+        <section class="container" style="height: 800px">
             <div class="page-header">
-                <h2>My Map<small> Interactive Map using KARTOGRAPH.JS </small></h2>
+                <h2>State Abbreviations<small> Interactive Map using KARTOGRAPH.JS </small></h2>
             </div>
             <div class="row">
-                <div class="col-sm-12" id="map"></div>
+                <div id="seeMap" style="height: 64px"></div>
+                <div class="col-sm-8" id="map" style="height: 100%;"></div>
+                <div class="col-sm-4" style="z-index: 9999999">
+                    <div class="panel panel-info" id="mapDetails" style="display: none">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">The abbreviation for the state of <span id="stateName" style="font-weight: bold"></span> </h3>
+                        </div>
+                        <div class="panel-body">
+                            <span id="abbr" style="font-weight: 900;font-size: x-large"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
+    <footer class="container-container" style="width: 100%">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6" style="margin-top: 15px">
+                <a class="" href="#page-top">
+                    <span style="font-size: x-large; color: white;">Visit The USA</span>
+                </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="col-sm-6" style="margin-top: 15px">
+                    <ul class="list-group list-inline pull-right" style="font-size: large;">
+                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#gallery" style="color: white">Gallery</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#chart" style="color: white">Population</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#seeMap" style="color: white">Map</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </div>
+    </footer>
 
 </main>
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
@@ -187,42 +233,55 @@
 <script src="js/jquery.smooth-scroll.min.js"></script>
 <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <script src="js/bootstrap-image-gallery.min.js"></script>
+<script src="js/myModernizr.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        kartograph.map('#map',600,400).loadMap('images/united-states.svg', mapLoaded);
+        function kTo(){
+            kartograph.map('#map',600,400).loadMap('images/united-states.svg', mapLoaded);
 
-        function mapLoaded(map) {
-            map.addLayer('layer0', {
-                styles: {
-                    stroke: '#bbb',
-                    fill: '#000000'
-                },
-                mouseenter: function(d, path) {
-                    path.attr('fill', Math.random() < 0.5 ? '#c04' : '#04c');
-                },
-                mouseleave: function(d, path) {
-                    path.animate({ fill: '#f6f4f2' }, 1000);
-                }
-            });
+            function mapLoaded(map) {
+                map.addLayer('layer0', {
+                    styles: {
+                        stroke: '#bbb',
+                        fill: '#f6f4f2'
+                    },
+                    mouseenter: function(d, path) {
+                        path.attr('fill', '#9c27b0');
+                        $('#mapDetails').toggle();
+                        $('#stateName').html(d.label);
+                        $('#abbr').html(d.key);
+                        console.log(d)
+                    },
+                    mouseleave: function(d, path) {
+                        path.animate({ fill: '#f6f4f2' }, 250);
+                        $('#mapDetails').toggle()
+                    }
+                });
 
-            var points_of_interest = [
-                { name: 'Juneau, AK', lat: 58.3, lon: -134.416667 },
-                { name: 'Honolulu, HI', lat: 21.3, lon: -157.816667 },
-                { name: 'San Francisco, CA', lat: 37.783333, lon: -122.416667 }
-            ];
+                var labelCity = [
+                    { name: 'Santa Barbara, CA', lat: 34.4258, lon: -119.7142 },
+                    { name: 'Kansas City, KA', lat: 39.1067, lon: -94.6764 },
+                    { name: 'Honolulu, HI', lat: 21.3000, lon: -157.8167 }
+                ];
 
-            map.addSymbols({
-                type: kartograph.LabeledBubble,
-                data: points_of_interest,
-                location: function(d) { return [d.lon, d.lat] },
-                title: function(d) { return d.name; },
-                radius: 3,
-                center: false,
-                attrs: { fill: 'black' },
-                labelattrs: { 'font-size': 11 },
-                buffer: true
-            });
+                map.addSymbols({
+                    type: kartograph.LabeledBubble,
+                    data: labelCity,
+                    location: function(d) { return [d.lon, d.lat] },
+                    title: function(d) { return d.name; },
+                    radius: 3,
+                    center: false,
+                    attrs: { fill: 'black' },
+                    labelattrs: { 'font-size': 15 },
+                    buffer: true
+                });
+            };
         }
+        kTo();
+        $(window).resize(function(){
+            kTo();
+        });
+
     });
 
 </script>
